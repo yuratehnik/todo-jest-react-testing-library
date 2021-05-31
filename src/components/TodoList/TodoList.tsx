@@ -42,6 +42,12 @@ const TodoList: React.FC = () => {
     const filteredItemsCopy = cloneDeep(memoizedFilteredItems);
     const pageOfFilteredItems = filteredItemsCopy.splice((currentPage - 1) * itemsOffset, itemsOffset);
 
+    if(pageOfFilteredItems.length < 1 && currentPage > 1) {
+        setCurrentPage((page)=>{
+            return page - 1;
+        })
+    }
+
     const listOfComponents: JSX.Element[] | JSX.Element = pageOfFilteredItems.length > 0 ? pageOfFilteredItems.map((item: ITodoItem) => {
             return <TodoListItem key={item.id} item={item}/>
         }) :

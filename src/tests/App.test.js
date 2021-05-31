@@ -1,5 +1,5 @@
 import React from "react";
-import {mount,shallow} from 'enzyme';
+import {mount} from 'enzyme';
 import App from "../App";
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
@@ -7,11 +7,14 @@ const Enzyme = require("enzyme");
 
 Enzyme.configure({ adapter: new Adapter() })
 
-test('add element to list', () => {
-    const app = mount(<App/>);
+describe('<App/>', () => {
+    it('add element to list', () => {
+        const app = mount(<App/>);
 
-    app.find('form input').simulate('change', { target: { value: 'Hello' } });
-    app.find('form button').simulate('submit');
+        app.find('form input').simulate('change', { target: { value: 'Hello' } });
+        app.find('form button').simulate('submit');
 
-    expect(app.find("ul.MuiList-root").text()).toEqual("Hello")
+        expect(app.find("ul.MuiList-root").text()).toEqual("Hello")
+    });
 });
+

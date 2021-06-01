@@ -2,7 +2,7 @@ import React from "react";
 import {todoStore} from "../store/store";
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import TodoList from "../components/TodoList/TodoList";
-import {shallow, mount, render, ReactWrapper} from "enzyme";
+import {mount} from "enzyme";
 import {Provider} from "react-redux";
 import {FilterProvider} from "../context/filterContext";
 import {addTodoAction} from "../store/actionGenerators";

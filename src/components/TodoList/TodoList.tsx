@@ -21,9 +21,13 @@ const TodoList: React.FC = () => {
     const itemsOffset = 10;
 
     useEffect(()=>{
-        todoStore.subscribe(() => {
+        const unsubscribe = todoStore.subscribe(() => {
             setTodoList(todoStore.getState().todos);
         });
+
+        return ()=>{
+            unsubscribe()
+        }
     },[])
 
     useEffect(()=>{
@@ -60,7 +64,12 @@ const TodoList: React.FC = () => {
             <List data-testid="todo_items_container">
                 {listOfComponents}
             </List>
-            <Pagination count={pageSize} page={currentPage} onChange={handlePagination} />
+            <Pagination
+                count={pageSize}
+                page={currentPage}
+                onChange={handlePagination}
+                data-testid="todo_pagination"
+            />
         </Container>
     )
 }

@@ -57,7 +57,7 @@ const TodoList: React.FC = () => {
 
     return(
         <Container>
-            <List>
+            <List data-testid="todo_items_container">
                 {listOfComponents}
             </List>
             <Pagination count={pageSize} page={currentPage} onChange={handlePagination} />

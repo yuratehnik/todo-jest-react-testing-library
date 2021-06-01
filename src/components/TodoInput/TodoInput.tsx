@@ -26,7 +26,10 @@ const TodoInput: React.FC<TodoInputProps> = ({addTodoAction}) => {
 
     return(
         <Container>
-            <form onSubmit={submitHandler}>
+            <form
+                onSubmit={submitHandler}
+                data-testid="todo_form">
+
                 <FormControl
                     fullWidth>
                     <TextField
@@ -39,7 +42,11 @@ const TodoInput: React.FC<TodoInputProps> = ({addTodoAction}) => {
                         margin="normal"
                         required={true}
                     />
-                    <Button variant="contained" color="primary" type="submit">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        data-testid="form_submit">
                         <PlaylistAddIcon/>
                     </Button>
                 </FormControl>

@@ -1,20 +1,18 @@
 import React from "react";
-import {mount} from 'enzyme';
 import App from "../App";
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-
-const Enzyme = require("enzyme");
-
-Enzyme.configure({ adapter: new Adapter() })
+import {render, fireEvent, getByText, queryByTestId} from "@testing-library/react";
 
 describe('<App/>', () => {
-    it('add element to list', () => {
-        const app = mount(<App/>);
+    let app;
+    beforeEach(()=>{
+        app = render(<App/>);
+    })
 
-        app.find('form input').simulate('change', { target: { value: 'Hello' } });
-        app.find('form button').simulate('submit');
+    it('should show element that has been added to list', () => {
+        fireEvent.change(app.container.querySelector('#todo-text'), { target: { value: 'Hello Task!' } })
+        fireEvent.submit(queryByTestId(app.container, "todo_form"))
 
-        expect(app.find("ul.MuiList-root").text()).toEqual("Hello")
+        expect(getByText(app.container, "Hello Task!")).toBeTruthy();
     });
 });
 
